@@ -48,7 +48,6 @@ export class App extends Component {
     else this.number2 = e.target.value;
   }
   hendleSubmitForm = (e) => {
-    e.prevenDefault();
     let contract = getContractInstance(Config.Abi, Config.Address);
     isPrime(contract, this.number1).then(data => {
       document.getElementById("msg").innerText = data;
@@ -56,7 +55,6 @@ export class App extends Component {
     });
   }
   hendleSubmitForm2 = (e) => {
-    e.prevenDefault();
     let contract = getContractInstance(Config.Abi, Config.Address);
     printFirstPrime(contract, this.number2).then(data => {
       document.getElementById("msg").innerText = data;
@@ -77,15 +75,13 @@ export class App extends Component {
             </div>
           </div>
           <h3>kiểm tra số nguyên tố </h3>
-          <form onSubmit={this.hendleSubmitForm} method="GET" >
-            <input type={"number"} id="number1" name="number" onChange={this.hendleChangValue} />
-            <input type={"submit"} value="kiểm tra số nguyên tố" />
-          </form>
+          <input type={"number"} id="number1" name="number" onChange={this.hendleChangValue} />
+          <button id="check" onClick={this.hendleSubmitForm}>kiểm tra số nguyên tố</button>
           <h3>hiển thị n số nguyên tố đầu tiên</h3>
-          <form action='' onSubmit={this.hendleSubmitForm2} method="">
-            <input type={"number"} name="n" id="number2" onChange={this.hendleChangValue} />
-            <input type={"submit"} value="in số nguyên tố" />
-          </form>
+
+          <input type={"number"} name="n" id="number2" onChange={this.hendleChangValue} />
+          <button id="print" onClick={this.hendleSubmitForm2}>print</button>
+
           <h2>message</h2>
           <div>
             <p id="msg"></p>
